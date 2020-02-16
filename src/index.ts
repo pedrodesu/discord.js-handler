@@ -1,4 +1,4 @@
-import handler from '@classes/handler';
+import Handler from 'classes/handler';
 
 // eslint-disable-next-line import/prefer-default-export
-export { handler };
+export { Handler };

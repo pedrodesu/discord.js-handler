@@ -1,6 +1,6 @@
 import { Message, Client } from 'discord.js';
 
-import Handler from '@classes/handler';
+import Handler from 'classes/handler';
 
 export interface CommandArguments {
   commandName: string;

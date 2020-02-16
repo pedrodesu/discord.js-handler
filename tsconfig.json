@@ -5,11 +5,6 @@
     "target": "esnext",
     "outDir": "lib",
     "baseUrl": "src",
-    "removeComments": true,
-    "paths": {
-      "@logs": ["utils/logs"],
-      "@classes/*": ["classes/*"],
-      "@interfaces/*": ["interfaces/*"]
-    }
+    "removeComments": true
   }
 }

@@ -3,10 +3,10 @@ import { join } from 'path';
 import { Message, Collection } from 'discord.js';
 
 import { errorLog, successLog } from 'utils/logs';
-import EventListener from '@classes/eventListener';
-import CommandListener from '@classes/commandListener';
-import { HandlerOptions } from '@interfaces/main';
-import { GenericEvent } from '@interfaces/events';
+import EventListener from 'classes/eventListener';
+import CommandListener from 'classes/commandListener';
+import { HandlerOptions } from 'interfaces/main';
+import { GenericEvent } from 'interfaces/events';
 
 const { lstat, readdir } = promises;
 
