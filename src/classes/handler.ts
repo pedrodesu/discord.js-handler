@@ -99,7 +99,7 @@ export default class Handler {
   readonly run = async (): Promise<void> => {
     try {
       // Get full path from the directory from which the function was called, which would equal the main file of the project
-      const basePath = module.parent.filename;
+      const basePath = module.parent.parent.filename;
 
       // Make desired actions run
       if (this.eventsFolder) await this.scanFolder(join(basePath, '..', this.eventsFolder), 'events');

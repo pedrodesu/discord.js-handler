@@ -1,6 +1,6 @@
 import { Channel, ClientUserGuildSettings, Emoji, ClientUserSettings, Guild, User, GuildMember, Message, Collection, Snowflake, MessageReaction, RateLimitInfo, Role, UserResolvable, TextChannel, Client } from 'discord.js';
 import Handler from '../classes/handler';
-interface EventUtils {
+export interface EventUtils {
     client?: Client;
     handler?: Handler;
 }
@@ -196,4 +196,3 @@ export interface GenericEvent {
     event: string;
     listener: (utils: EventUtils, ...params: any[]) => Promise<void> | void;
 }
-export {};
