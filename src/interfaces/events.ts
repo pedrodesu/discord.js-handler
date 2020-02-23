@@ -19,7 +19,7 @@ import {
 
 import Handler from '../classes/handler';
 
-interface EventUtils {
+export interface EventUtils {
   client?: Client;
   handler?: Handler;
 }
