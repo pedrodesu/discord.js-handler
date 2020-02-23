@@ -1,5 +1,5 @@
 import { Channel, ClientUserGuildSettings, Emoji, ClientUserSettings, Guild, User, GuildMember, Message, Collection, Snowflake, MessageReaction, RateLimitInfo, Role, UserResolvable, TextChannel, Client } from 'discord.js';
-import Handler from '@classes/handler';
+import Handler from '../classes/handler';
 interface EventUtils {
     client?: Client;
     handler?: Handler;

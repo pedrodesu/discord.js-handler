@@ -2,15 +2,16 @@ import { promises } from 'fs';
 import { join } from 'path';
 import { Message, Collection } from 'discord.js';
 
-import { errorLog, successLog } from 'utils/logs';
-import EventListener from 'classes/eventListener';
-import CommandListener from 'classes/commandListener';
-import { HandlerOptions } from 'interfaces/main';
-import { GenericEvent } from 'interfaces/events';
+import { errorLog, successLog } from '../utils/logs';
+import EventListener from './eventListener';
+import CommandListener from './commandListener';
+import { HandlerOptions } from '../interfaces/main';
+import { GenericEvent } from '../interfaces/events';
 
 const { lstat, readdir } = promises;
 
 // Define Handler class
+
 export default class Handler {
   // Define its properties
   private readonly client: HandlerOptions['client'];
@@ -31,7 +32,7 @@ export default class Handler {
     this.commandsFolder = commandsFolder;
   }
 
-  /**
+  /*
    * Login with the provided token using the library
    */
   readonly login = async (): Promise<void> => {
@@ -42,10 +43,10 @@ export default class Handler {
     }
   };
 
-  /**
+  /*
    * Scans folders and their types and does actions with them
-   * @param path Full path of the folder that is going to be read
-   * @param type Type of the scan we are doing, can be both events or commands
+   * ../param path Full path of the folder that is going to be read
+   * ../param type Type of the scan we are doing, can be both events or commands
    */
   private readonly scanFolder = async (path: string, type: 'events' | 'commands'): Promise<void> => {
     try {
@@ -92,7 +93,7 @@ export default class Handler {
     }
   };
 
-  /**
+  /*
    * Runs the events and commands (if both are called) folders scan
    */
   readonly run = async (): Promise<void> => {
@@ -108,10 +109,10 @@ export default class Handler {
     }
   };
 
-  /**
+  /*
    * Searches for commands based on the received message and makes some verifications
-   * @param prefix Supposed prefix to be verified in the message
-   * @param message Message instance of the message event
+   * ../param prefix Supposed prefix to be verified in the message
+   * ../param message Message instance of the message event
    */
   readonly importCommands = async (prefix: string, message: Message): Promise<void> => {
     // Define initial properties

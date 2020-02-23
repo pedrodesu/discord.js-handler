@@ -1,2 +1,2 @@
-import handler from '@classes/handler';
-export { handler };
+import Handler from './classes/handler';
+export default Handler;

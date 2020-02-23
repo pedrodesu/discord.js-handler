@@ -17,7 +17,7 @@ import {
   Client
 } from 'discord.js';
 
-import Handler from 'classes/handler';
+import Handler from '../classes/handler';
 
 interface EventUtils {
   client?: Client;

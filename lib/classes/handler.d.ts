@@ -1,5 +1,5 @@
 import { Message } from 'discord.js';
-import { HandlerOptions } from '@interfaces/main';
+import { HandlerOptions } from '../interfaces/main';
 export default class Handler {
     private readonly client;
     private readonly token;

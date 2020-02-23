@@ -39,6 +39,7 @@
     "lines-between-class-members": "off",
     "no-console": "off",
     "no-await-in-loop": "off",
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
+    "import/extensions": "off"
   }
 }

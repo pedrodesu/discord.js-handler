@@ -1,25 +1,31 @@
 {
   "name": "discord.js-handler",
   "description": "Lightweight event and command handler for a discord.js project",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
+    "start": "node -r tsconfig-paths/register -r ts-node/register lib",
     "start:dev": "tsnd -r tsconfig-paths/register src",
     "start:update": "run-s get-updates apply-updates",
-    "start:build": "run-s clean compile run",
+    "start:build": "run-s clean compile",
     "clean": "rimraf lib",
     "compile": "tsc",
-    "run": "node -r tsconfig-paths/register -r ts-node/register lib",
     "get-updates": "ncu -u",
     "apply-updates": "npm i"
+  },
+  "_moduleAliases": {
+    "@classes": "lib/classes",
+    "@interfaces": "lib/interfaces",
+    "@utils": "lib/utils"
   },
   "author": "el3triK_",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^13.7.1",
-    "@typescript-eslint/eslint-plugin": "^2.19.2",
-    "@typescript-eslint/parser": "^2.19.2",
+    "@types/module-alias": "^2.0.0",
+    "@types/node": "^13.7.4",
+    "@typescript-eslint/eslint-plugin": "^2.20.0",
+    "@typescript-eslint/parser": "^2.20.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.10.0",
@@ -32,7 +38,7 @@
     "rimraf": "^3.0.2",
     "ts-node-dev": "^1.0.0-pre.44",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.8.2"
   },
   "dependencies": {
     "chalk": "^3.0.0",

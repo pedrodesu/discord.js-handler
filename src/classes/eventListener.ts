@@ -47,7 +47,7 @@ import {
   GenericEvent,
   MessageEvent,
   ErrorEvent
-} from 'interfaces/events';
+} from '../interfaces/events';
 
 // Define EventListener class
 export default class EventListener {

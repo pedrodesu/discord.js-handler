@@ -1,4 +1,4 @@
-import { Command } from 'interfaces/commands';
+import { Command } from '../interfaces/commands';
 
 // Define CommandListener class
 export default class CommandListener {
