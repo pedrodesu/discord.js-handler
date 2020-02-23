@@ -1,7 +1,7 @@
 {
   "name": "discord.js-handler",
   "description": "Lightweight event and command handler for a discord.js project",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -13,11 +13,6 @@
     "compile": "tsc",
     "get-updates": "ncu -u",
     "apply-updates": "npm i"
-  },
-  "_moduleAliases": {
-    "@classes": "lib/classes",
-    "@interfaces": "lib/interfaces",
-    "@utils": "lib/utils"
   },
   "author": "el3triK_",
   "license": "MIT",
