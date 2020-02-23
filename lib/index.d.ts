@@ -1,2 +1,4 @@
 import Handler from './classes/handler';
-export = Handler;
+import CommandListener from './classes/commandListener';
+import EventListener from './classes/eventListener';
+export { Handler, CommandListener, EventListener };
