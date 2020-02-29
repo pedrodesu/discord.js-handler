@@ -18,7 +18,7 @@ npm install discord.js-handler
 yarn add discord.js-handler
 ```
 
-## Usage & Types
+## Usage
 
 ### Activation example
 
@@ -54,7 +54,7 @@ module.exports = class MessageEvent extends EventListener {
         try {
           await handler.importCommands('PREFIX', message);
 
-          await message.react('⚡️');
+          await message.react('💡');
         } catch (e) {
           console.error(e);
         }
@@ -85,6 +85,12 @@ module.exports = class PingCommand extends CommandListener {
   }
 };
 ```
+
+### Warning ⚠️
+
+When using commands with the handler, you must specify the commands' folder in the handler settings (`commandsFolder` parameter) **and** have a message event, in which you call the `importCommands` method from the handler instance (`Handler.importCommands()`), otherwise the commands will not be called (As specified in the event example)
+
+This happens because the handler needs a prefix, and it must be defined on the message event, because you could want the prefix to be dynamic (change from guild to guild)
 
 ## License
 
