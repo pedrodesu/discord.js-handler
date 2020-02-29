@@ -61,7 +61,8 @@ export default class Handler {
 
         // If the child is a file, proceed with action. Else, run this same function again, which allows recursive and categorized commands and events
         if (!(await lstat(newFullPath)).isDirectory()) {
-          const ListenerClass = (await import(newFullPath)).default;
+          const fileContent = await import(newFullPath);
+          const ListenerClass = fileContent || fileContent.default;
 
           if (ListenerClass) {
             if (type === 'events') {
