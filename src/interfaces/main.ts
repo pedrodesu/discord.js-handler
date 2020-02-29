@@ -2,8 +2,8 @@ import { Client } from 'discord.js';
 
 export interface HandlerOptions {
   client: Client;
-  token: string;
+  token?: string;
+  verbose?: boolean;
   eventsFolder?: string;
   commandsFolder?: string;
-  verbose?: boolean;
 }

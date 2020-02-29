@@ -15,8 +15,9 @@ const { lstat, readdir } = promises;
 export default class Handler {
   // Define its properties
   private readonly client: HandlerOptions['client'];
-  private readonly token: HandlerOptions['token'];
-  private readonly verbose: HandlerOptions['verbose'];
+
+  private readonly token?: HandlerOptions['token'];
+  private readonly verbose?: HandlerOptions['verbose'];
 
   private readonly eventsFolder?: HandlerOptions['eventsFolder'];
   private readonly commandsFolder?: HandlerOptions['commandsFolder'];
@@ -55,35 +56,40 @@ export default class Handler {
 
       // Reads the files inside the directory and loops around each one
       const files = await readdir(path);
-      for (let i = 0; i < files.length; i += 1) {
+      for (let i = 0; i < files.length; i++) {
         const file = files[i];
         const newFullPath = join(path, file);
 
         // If the child is a file, proceed with action. Else, run this same function again, which allows recursive and categorized commands and events
-        if (!(await lstat(newFullPath)).isDirectory()) {
-          const fileContent = await import(newFullPath);
-          const ListenerClass = fileContent || fileContent.default;
+        if ((await lstat(newFullPath)).isDirectory()) return await this.scanFolder(newFullPath, type);
 
-          if (ListenerClass) {
-            if (type === 'events') {
-              // If we are searching for events, treat the export as an event, get its properties and make the client listen for them, with the correct callback
-              const eventClass: EventListener = new ListenerClass();
-              const callback: GenericEvent['listener'] = eventClass.listener.bind(eventClass, { client: this.client, handler: this });
+        // Ignore the file if it is not a JavaScript or TypeScript file
+        if (!file.endsWith('.js') && !file.endsWith('.ts')) return;
 
-              this.client.on(eventClass.event, callback);
-              if (this.verbose) console.log(successLog(`[HANDLER] Event '${eventClass.event}' loaded`));
-            } else if (type === 'commands') {
-              // If we are searching for commands, treat the export as a command, get its properties and push them to the command collection
-              const commandClass: CommandListener = new ListenerClass();
-              const { aliases, listener } = commandClass;
+        const fileContent = await import(newFullPath);
+        const ListenerClass = fileContent || fileContent.default;
 
-              this.commands.set(typeof aliases === 'string' ? aliases : aliases.map(a => a.toLowerCase()), listener);
-              if (this.verbose)
-                console.log(successLog(`[HANDLER] Command which aliases are [${typeof aliases === 'string' ? aliases : aliases.join(', ')}] loaded`));
-            }
-          }
-        } else {
-          await this.scanFolder(newFullPath, type);
+        // Ignore the file if we cannot find a valid class (CommandListener or EventListener)
+        if (!ListenerClass) return;
+
+        if (type === 'events') {
+          // If we are searching for events, treat the export as an event, get its properties and make the client listen for them, with the correct callback
+          const eventClass: EventListener = new ListenerClass();
+          const callback: GenericEvent['listener'] = eventClass.listener.bind(eventClass, {
+            client: this.client,
+            handler: this
+          });
+
+          this.client.on(eventClass.event, callback);
+          if (this.verbose) console.log(successLog(`[HANDLER] Event '${eventClass.event}' loaded`));
+        } else if (type === 'commands') {
+          // If we are searching for commands, treat the export as a command, get its properties and push them to the command collection
+          const commandClass: CommandListener = new ListenerClass();
+          const { aliases, listener } = commandClass;
+
+          this.commands.set(typeof aliases === 'string' ? aliases : aliases.map(a => a.toLowerCase()), listener);
+          if (this.verbose)
+            console.log(successLog(`[HANDLER] Command which aliases are [${typeof aliases === 'string' ? aliases : aliases.join(', ')}] loaded`));
         }
       }
     } catch (e) {

@@ -36,10 +36,11 @@
         "tsx": "never"
       }
     ],
-    "lines-between-class-members": "off",
+    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
     "no-console": "off",
     "no-await-in-loop": "off",
     "import/no-unresolved": "off",
-    "import/extensions": "off"
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "consistent-return": "off"
   }
 }

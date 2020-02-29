@@ -2,7 +2,14 @@
 
 [![](https://img.shields.io/npm/dm/discord.js-handler.svg?style=flat)](https://www.npmjs.org/package/discord.js-handler) [![](https://img.shields.io/npm/v/discord.js-handler.svg?style=flat)](https://www.npmjs.org/package/discord.js-handler)
 
-> Simple to use handler for discord.js.
+> Simple yet powerful handler for discord.js.
+
+## Features
+
+- Organized and class-oriented
+- CommonJS and EcmaScript friendly
+- Typings included
+- Categories and recursive events and commands
 
 ## Installation
 
@@ -91,6 +98,14 @@ module.exports = class PingCommand extends CommandListener {
 When using commands with the handler, you must specify the commands' folder in the handler settings (`commandsFolder` parameter) **and** have a message event, in which you call the `importCommands` method from the handler instance (`Handler.importCommands()`), otherwise the commands will not be called (As specified in the event example)
 
 This happens because the handler needs a prefix, and it must be defined on the message event, because you could want the prefix to be dynamic (change from guild to guild)
+
+## Feedback
+
+If you want to report an error or give a suggestion, please refer to these links:
+
+[Report error](https://github.com/hSel3triK/discord.js-handler/issues/new?assignees=&labels=&template=bug_report.md&title=)
+
+[Give suggestion](https://github.com/hSel3triK/discord.js-handler/issues/new?assignees=&labels=&template=feature_request.md&title=)
 
 ## License
 

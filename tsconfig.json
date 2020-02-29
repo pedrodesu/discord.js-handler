@@ -5,7 +5,6 @@
     "target": "esnext",
     "outDir": "lib",
     "declaration": true,
-    "removeComments": true,
-    "allowSyntheticDefaultImports": true
+    "removeComments": true
   }
 }
