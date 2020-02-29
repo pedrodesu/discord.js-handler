@@ -12,6 +12,6 @@ interface CommandArguments {
 }
 
 export interface Command {
-  aliases: string[];
+  aliases: string | string[];
   listener: (emittedArguments: CommandArguments) => Promise<void> | void;
 }

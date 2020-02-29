@@ -75,18 +75,15 @@ export default class Handler {
             } else if (type === 'commands') {
               // If we are searching for commands, treat the export as a command, get its properties and push them to the command collection
               const commandClass: CommandListener = new ListenerClass();
-              const { aliases } = commandClass;
-              const callback = commandClass.listener;
+              const { aliases, listener } = commandClass;
 
-              this.commands.set(
-                aliases.map(a => a.toLowerCase()),
-                callback
-              );
-              if (this.verbose) console.log(successLog(`[HANDLER] Command which aliases are [${aliases.join(', ')}] loaded`));
+              this.commands.set(typeof aliases === 'string' ? aliases : aliases.map(a => a.toLowerCase()), listener);
+              if (this.verbose)
+                console.log(successLog(`[HANDLER] Command which aliases are [${typeof aliases === 'string' ? aliases : aliases.join(', ')}] loaded`));
             }
           }
         } else {
-          this.scanFolder(newFullPath, type);
+          await this.scanFolder(newFullPath, type);
         }
       }
     } catch (e) {
