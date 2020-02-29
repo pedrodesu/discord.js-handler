@@ -5,7 +5,7 @@
     "type": "git",
     "url": "git://github.com/hSel3triK/discord.js-handler.git"
   },
-  "version": "1.1.13",
+  "version": "1.1.14",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
