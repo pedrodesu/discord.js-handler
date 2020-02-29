@@ -261,6 +261,5 @@ export interface WebhookUpdateEvent {
 
 export interface GenericEvent {
   event: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  listener: (utils: EventUtils, ...params: any[]) => Promise<void> | void;
+  listener: (utils: EventUtils, ...params: never[]) => Promise<void> | void;
 }
