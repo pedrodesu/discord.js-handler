@@ -72,21 +72,21 @@ export default class Handler {
         // Ignore the file if we cannot find a valid class (CommandListener or EventListener)
         if (!ListenerClass) return;
 
+        const importedListener: EventListener | CommandListener = new ListenerClass();
+        const { listener } = importedListener;
+
         if (type === 'events') {
+          const { event } = importedListener as EventListener;
+
           // If we are searching for events, treat the export as an event, get its properties and make the client listen for them, with the correct callback
-          const eventClass: EventListener = new ListenerClass();
-          const callback: GenericEvent['listener'] = eventClass.listener.bind(eventClass, {
-            client: this.client,
-            handler: this
-          });
+          const callback: GenericEvent['listener'] = listener.bind(importedListener, { client: this.client, handler: this });
 
-          this.client.on(eventClass.event, callback);
-          if (this.verbose) console.log(successLog(`[HANDLER] Event '${eventClass.event}' loaded`));
+          this.client.on(event, callback);
+          if (this.verbose) console.log(successLog(`[HANDLER] Event '${event}' loaded`));
         } else if (type === 'commands') {
-          // If we are searching for commands, treat the export as a command, get its properties and push them to the command collection
-          const commandClass: CommandListener = new ListenerClass();
-          const { aliases, listener } = commandClass;
+          const { aliases } = importedListener as CommandListener;
 
+          // If we are searching for commands, treat the export as a command, get its properties and push them to the command collection
           this.commands.set(typeof aliases === 'string' ? aliases : aliases.map(a => a.toLowerCase()), listener);
           if (this.verbose)
             console.log(successLog(`[HANDLER] Command which aliases are [${typeof aliases === 'string' ? aliases : aliases.join(', ')}] loaded`));
