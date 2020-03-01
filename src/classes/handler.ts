@@ -67,7 +67,7 @@ export default class Handler {
         if (!file.endsWith('.js') && !file.endsWith('.ts')) return;
 
         const fileContent = await import(newFullPath);
-        const ListenerClass = fileContent || fileContent.default;
+        const ListenerClass = fileContent.default || fileContent;
 
         // Ignore the file if we cannot find a valid class (CommandListener or EventListener)
         if (!ListenerClass) return;
