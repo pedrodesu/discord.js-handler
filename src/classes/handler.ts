@@ -112,12 +112,12 @@ export default class Handler {
       // Make desired actions run
       if (this.eventsFolder) {
         await this.scanFolder(joinFolder(this.eventsFolder), 'events');
-        await onLoadedEvents(options);
+        if (onLoadedEvents) await onLoadedEvents(options);
       }
 
       if (this.commandsFolder) {
         await this.scanFolder(joinFolder(this.commandsFolder), 'commands');
-        await onLoadedCommands(options);
+        if (onLoadedCommands) await onLoadedCommands(options);
       }
     } catch (e) {
       console.error(e);
