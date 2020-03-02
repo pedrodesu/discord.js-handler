@@ -1,5 +1,6 @@
 # discord.js-handler
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f4e89b7db66a40329b86750a5564b989)](https://app.codacy.com/manual/hSel3triK/discord.js-handler?utm_source=github.com&utm_medium=referral&utm_content=hSel3triK/discord.js-handler&utm_campaign=Badge_Grade_Dashboard)
 [![](https://img.shields.io/npm/dm/discord.js-handler.svg?color=blue)](https://www.npmjs.org/package/discord.js-handler)
 [![](https://img.shields.io/npm/v/discord.js-handler.svg?color=orange)](https://www.npmjs.org/package/discord.js-handler)
 [![Depfu](https://badges.depfu.com/badges/8dde868edf0ec39e974d9688eabbf2c9/count.svg)](https://depfu.com/github/hSel3triK/discord.js-handler?project_id=11233)
