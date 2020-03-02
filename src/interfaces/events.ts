@@ -10,275 +10,269 @@ import {
   MessageReaction,
   Role,
   TextChannel,
-  Client,
   Invite,
   RateLimitData,
   CloseEvent
 } from 'discord.js';
 
-import Handler from '../classes/handler';
-
-export interface EventUtils {
-  client?: Client;
-  handler?: Handler;
-}
+import { GenericUtils } from './main';
 
 export interface ChannelCreateEvent {
   event: 'channelCreate';
-  listener: (utils: EventUtils, channel: Channel) => Promise<void> | void;
+  listener: (utils: GenericUtils, channel: Channel) => Promise<void> | void;
 }
 
 export interface ChannelDeleteEvent {
   event: 'channelDelete';
-  listener: (utils: EventUtils, channel: Channel) => Promise<void> | void;
+  listener: (utils: GenericUtils, channel: Channel) => Promise<void> | void;
 }
 
 export interface ChannelPinsUpdateEvent {
   event: 'channelPinsUpdate';
-  listener: (utils: EventUtils, channel: Channel, time: Date) => Promise<void> | void;
+  listener: (utils: GenericUtils, channel: Channel, time: Date) => Promise<void> | void;
 }
 
 export interface ChannelUpdateEvent {
   event: 'channelUpdate';
-  listener: (utils: EventUtils, oldChannel: Channel, newChannel: Channel) => Promise<void> | void;
+  listener: (utils: GenericUtils, oldChannel: Channel, newChannel: Channel) => Promise<void> | void;
 }
 
 export interface DebugEvent {
   event: 'debug';
-  listener: (utils: EventUtils, info: string) => Promise<void> | void;
+  listener: (utils: GenericUtils, info: string) => Promise<void> | void;
 }
 
 export interface DisconnectEvent {
   event: 'disconnect';
-  listener: (utils: EventUtils) => Promise<void> | void;
+  listener: (utils: GenericUtils) => Promise<void> | void;
 }
 
 export interface EmojiCreateEvent {
   event: 'emojiCreate';
-  listener: (utils: EventUtils, emoji: Emoji) => Promise<void> | void;
+  listener: (utils: GenericUtils, emoji: Emoji) => Promise<void> | void;
 }
 
 export interface EmojiDeleteEvent {
   event: 'emojiDelete';
-  listener: (utils: EventUtils, emoji: Emoji) => Promise<void> | void;
+  listener: (utils: GenericUtils, emoji: Emoji) => Promise<void> | void;
 }
 
 export interface EmojiUpdateEvent {
   event: 'emojiUpdate';
-  listener: (utils: EventUtils, oldEmoji: Emoji, newEmoji: Emoji) => Promise<void> | void;
+  listener: (utils: GenericUtils, oldEmoji: Emoji, newEmoji: Emoji) => Promise<void> | void;
 }
 
 export interface ErrorEvent {
   event: 'error';
-  listener: (utils: EventUtils, error: Error) => Promise<void> | void;
+  listener: (utils: GenericUtils, error: Error) => Promise<void> | void;
 }
 
 export interface GuildBanAddEvent {
   event: 'guildBanAdd';
-  listener: (utils: EventUtils, guild: Guild, user: User) => Promise<void> | void;
+  listener: (utils: GenericUtils, guild: Guild, user: User) => Promise<void> | void;
 }
 
 export interface GuildBanRemoveEvent {
   event: 'guildBanRemove';
-  listener: (utils: EventUtils, guild: Guild, user: User) => Promise<void> | void;
+  listener: (utils: GenericUtils, guild: Guild, user: User) => Promise<void> | void;
 }
 
 export interface GuildCreateEvent {
   event: 'guildCreate';
-  listener: (utils: EventUtils, guild: Guild) => Promise<void> | void;
+  listener: (utils: GenericUtils, guild: Guild) => Promise<void> | void;
 }
 
 export interface GuildDeleteEvent {
   event: 'guildDelete';
-  listener: (utils: EventUtils, guild: Guild) => Promise<void> | void;
+  listener: (utils: GenericUtils, guild: Guild) => Promise<void> | void;
 }
 
 export interface GuildMemberAddEvent {
   event: 'guildMemberAdd';
-  listener: (utils: EventUtils, member: GuildMember) => Promise<void> | void;
+  listener: (utils: GenericUtils, member: GuildMember) => Promise<void> | void;
 }
 
 export interface GuildMemberAvailableEvent {
   event: 'guildMemberAvailable';
-  listener: (utils: EventUtils, member: GuildMember) => Promise<void> | void;
+  listener: (utils: GenericUtils, member: GuildMember) => Promise<void> | void;
 }
 
 export interface GuildMemberRemoveEvent {
   event: 'guildMemberRemove';
-  listener: (utils: EventUtils, member: GuildMember) => Promise<void> | void;
+  listener: (utils: GenericUtils, member: GuildMember) => Promise<void> | void;
 }
 
 export interface GuildMembersChunkEvent {
   event: 'guildMembersChunk';
-  listener: (utils: EventUtils, members: GuildMember[], guild: Guild) => Promise<void> | void;
+  listener: (utils: GenericUtils, members: GuildMember[], guild: Guild) => Promise<void> | void;
 }
 
 export interface GuildMemberSpeakingEvent {
   event: 'guildMemberSpeaking';
-  listener: (utils: EventUtils, member: GuildMember, speaking: boolean) => Promise<void> | void;
+  listener: (utils: GenericUtils, member: GuildMember, speaking: boolean) => Promise<void> | void;
 }
 
 export interface GuildMemberUpdateEvent {
   event: 'guildMemberUpdate';
-  listener: (utils: EventUtils, oldMember: GuildMember, newMember: GuildMember) => Promise<void> | void;
+  listener: (utils: GenericUtils, oldMember: GuildMember, newMember: GuildMember) => Promise<void> | void;
 }
 
 export interface GuildUnavailableEvent {
   event: 'guildUnavailable';
-  listener: (utils: EventUtils, guild: Guild) => Promise<void> | void;
+  listener: (utils: GenericUtils, guild: Guild) => Promise<void> | void;
 }
 
 export interface GuildUpdateEvent {
   event: 'guildUpdate';
-  listener: (utils: EventUtils, oldGuild: Guild, newGuild: Guild) => Promise<void> | void;
+  listener: (utils: GenericUtils, oldGuild: Guild, newGuild: Guild) => Promise<void> | void;
 }
 
 export interface GuildIntegrationsUpdateEvent {
   event: 'guildIntegrationsUpdate';
-  listener: (utils: EventUtils, guild: Guild) => Promise<void> | void;
+  listener: (utils: GenericUtils, guild: Guild) => Promise<void> | void;
 }
 
 export interface InvalidatedEvent {
   event: 'invalidated';
-  listener: (utils: EventUtils) => Promise<void> | void;
+  listener: (utils: GenericUtils) => Promise<void> | void;
 }
 
 export interface InviteCreateEvent {
   event: 'inviteCreate';
-  listener: (utils: EventUtils, invite: Invite) => Promise<void> | void;
+  listener: (utils: GenericUtils, invite: Invite) => Promise<void> | void;
 }
 
 export interface InviteDeleteEvent {
   event: 'inviteDelete';
-  listener: (utils: EventUtils, invite: Invite) => Promise<void> | void;
+  listener: (utils: GenericUtils, invite: Invite) => Promise<void> | void;
 }
 
 export interface MessageEvent {
   event: 'message';
-  listener: (utils: EventUtils, message: Message) => Promise<void> | void;
+  listener: (utils: GenericUtils, message: Message) => Promise<void> | void;
 }
 
 export interface MessageDeleteEvent {
   event: 'messageDelete';
-  listener: (utils: EventUtils, message: Message) => Promise<void> | void;
+  listener: (utils: GenericUtils, message: Message) => Promise<void> | void;
 }
 
 export interface MessageDeleteBulkEvent {
   event: 'messageDeleteBulk';
-  listener: (utils: EventUtils, messages: Collection<Snowflake, Message>) => Promise<void> | void;
+  listener: (utils: GenericUtils, messages: Collection<Snowflake, Message>) => Promise<void> | void;
 }
 
 export interface MessageReactionAddEvent {
   event: 'messageReactionAdd';
-  listener: (utils: EventUtils, messageReaction: MessageReaction, user: User) => Promise<void> | void;
+  listener: (utils: GenericUtils, messageReaction: MessageReaction, user: User) => Promise<void> | void;
 }
 
 export interface MessageReactionRemoveEvent {
   event: 'messageReactionRemove';
-  listener: (utils: EventUtils, messageReaction: MessageReaction, user: User) => Promise<void> | void;
+  listener: (utils: GenericUtils, messageReaction: MessageReaction, user: User) => Promise<void> | void;
 }
 
 export interface MessageReactionRemoveAllEvent {
   event: 'messageReactionRemoveAll';
-  listener: (utils: EventUtils, message: Message) => Promise<void> | void;
+  listener: (utils: GenericUtils, message: Message) => Promise<void> | void;
 }
 
 export interface MessageReactionRemoveEmojiEvent {
   event: 'messageReactionRemoveEmoji';
-  listener: (utils: EventUtils, reaction: MessageReaction) => Promise<void> | void;
+  listener: (utils: GenericUtils, reaction: MessageReaction) => Promise<void> | void;
 }
 
 export interface MessageUpdateEvent {
   event: 'messageUpdate';
-  listener: (utils: EventUtils, oldMessage: Message, newMessage: Message) => Promise<void> | void;
+  listener: (utils: GenericUtils, oldMessage: Message, newMessage: Message) => Promise<void> | void;
 }
 
 export interface PresenceUpdateEvent {
   event: 'presenceUpdate';
-  listener: (utils: EventUtils, oldMember: GuildMember, newMember: GuildMember) => Promise<void> | void;
+  listener: (utils: GenericUtils, oldMember: GuildMember, newMember: GuildMember) => Promise<void> | void;
 }
 
 export interface RateLimitEvent {
   event: 'rateLimit';
-  listener: (utils: EventUtils, rateLimitData: RateLimitData) => Promise<void> | void;
+  listener: (utils: GenericUtils, rateLimitData: RateLimitData) => Promise<void> | void;
 }
 
 export interface ReadyEvent {
   event: 'ready';
-  listener: (utils: EventUtils) => Promise<void> | void;
+  listener: (utils: GenericUtils) => Promise<void> | void;
 }
 
 export interface RoleCreateEvent {
   event: 'roleCreate';
-  listener: (utils: EventUtils, role: Role) => Promise<void> | void;
+  listener: (utils: GenericUtils, role: Role) => Promise<void> | void;
 }
 
 export interface RoleDeleteEvent {
   event: 'roleDelete';
-  listener: (utils: EventUtils, role: Role) => Promise<void> | void;
+  listener: (utils: GenericUtils, role: Role) => Promise<void> | void;
 }
 
 export interface RoleUpdateEvent {
   event: 'roleUpdate';
-  listener: (utils: EventUtils, oldRole: Role, newRole: Role) => Promise<void> | void;
+  listener: (utils: GenericUtils, oldRole: Role, newRole: Role) => Promise<void> | void;
 }
 
 export interface ShardDisconnectEvent {
   event: 'shardDisconnect';
-  listener: (utils: EventUtils, event: CloseEvent, id: number) => Promise<void> | void;
+  listener: (utils: GenericUtils, event: CloseEvent, id: number) => Promise<void> | void;
 }
 
 export interface ShardErrorEvent {
   event: 'shardError';
-  listener: (utils: EventUtils, error: Error, shardID: number) => Promise<void> | void;
+  listener: (utils: GenericUtils, error: Error, shardID: number) => Promise<void> | void;
 }
 
 export interface ShardReadyEvent {
   event: 'shardReady';
-  listener: (utils: EventUtils, id: number, unavailableGuilds?: Set<string>) => Promise<void> | void;
+  listener: (utils: GenericUtils, id: number, unavailableGuilds?: Set<string>) => Promise<void> | void;
 }
 
 export interface ShardReconnectingEvent {
   event: 'shardReconnecting';
-  listener: (utils: EventUtils, id: number) => Promise<void> | void;
+  listener: (utils: GenericUtils, id: number) => Promise<void> | void;
 }
 
 export interface ShardResumeEvent {
   event: 'shardResume';
-  listener: (utils: EventUtils, id: number, replayedEvents: number) => Promise<void> | void;
+  listener: (utils: GenericUtils, id: number, replayedEvents: number) => Promise<void> | void;
 }
 
 export interface TypingStartEvent {
   event: 'typingStart';
-  listener: (utils: EventUtils, channel: Channel, user: User) => Promise<void> | void;
+  listener: (utils: GenericUtils, channel: Channel, user: User) => Promise<void> | void;
 }
 
 export interface TypingStopEvent {
   event: 'typingStop';
-  listener: (utils: EventUtils, channel: Channel, user: User) => Promise<void> | void;
+  listener: (utils: GenericUtils, channel: Channel, user: User) => Promise<void> | void;
 }
 
 export interface UserUpdateEvent {
   event: 'userUpdate';
-  listener: (utils: EventUtils, oldUser: User, newUser: User) => Promise<void> | void;
+  listener: (utils: GenericUtils, oldUser: User, newUser: User) => Promise<void> | void;
 }
 
 export interface VoiceStateUpdateEvent {
   event: 'voiceStateUpdate';
-  listener: (utils: EventUtils, oldMember: GuildMember, newMember: GuildMember) => Promise<void> | void;
+  listener: (utils: GenericUtils, oldMember: GuildMember, newMember: GuildMember) => Promise<void> | void;
 }
 
 export interface WarnEvent {
   event: 'warn';
-  listener: (utils: EventUtils, info: string) => Promise<void> | void;
+  listener: (utils: GenericUtils, info: string) => Promise<void> | void;
 }
 
 export interface WebhookUpdateEvent {
   event: 'webhookUpdate';
-  listener: (utils: EventUtils, channel: TextChannel) => Promise<void> | void;
+  listener: (utils: GenericUtils, channel: TextChannel) => Promise<void> | void;
 }
 
 export interface GenericEvent {
   event: string;
-  listener: (utils: EventUtils, ...params: never[]) => Promise<void> | void;
+  listener: (utils: GenericUtils, ...params: never[]) => Promise<void> | void;
 }

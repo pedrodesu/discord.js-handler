@@ -5,7 +5,7 @@ import { red, green } from 'chalk';
 
 import EventListener from './eventListener';
 import CommandListener from './commandListener';
-import { HandlerOptions } from '../interfaces/main';
+import { HandlerOptions, RunCallbacks, GenericUtils } from '../interfaces/main';
 import { GenericEvent } from '../interfaces/events';
 
 const { lstat, readdir } = promises;
@@ -100,14 +100,25 @@ export default class Handler {
   /*
    * Runs the events and commands (if both are called) folders scan
    */
-  readonly run = async (): Promise<void> => {
+  readonly run = async ({ onLoadedEvents, onLoadedCommands }: RunCallbacks): Promise<void> => {
     try {
       // Get full path from the directory from which the function was called, which would equal the main file of the project
       const basePath = module.parent.parent.filename;
 
+      const options: GenericUtils = { client: this.client, handler: this };
+
+      const joinFolder = (...folder: string[]): string => join(basePath, '..', ...folder);
+
       // Make desired actions run
-      if (this.eventsFolder) await this.scanFolder(join(basePath, '..', this.eventsFolder), 'events');
-      if (this.commandsFolder) await this.scanFolder(join(basePath, '..', this.commandsFolder), 'commands');
+      if (this.eventsFolder) {
+        await this.scanFolder(joinFolder(this.eventsFolder), 'events');
+        await onLoadedEvents(options);
+      }
+
+      if (this.commandsFolder) {
+        await this.scanFolder(joinFolder(this.commandsFolder), 'commands');
+        await onLoadedCommands(options);
+      }
     } catch (e) {
       console.error(e);
     }

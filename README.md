@@ -6,30 +6,30 @@
 
 > Simple yet powerful handler for discord.js.
 
-## Features
+## Features 📋
 
 - Organized and class-oriented
 - CommonJS and EcmaScript friendly
 - Typings included
 - Categories and recursive events and commands
 
-## Installation
+## Installation 🔥
 
-### npm
+### npm 🐿️
 
 ```
 npm install discord.js-handler
 ```
 
-### Yarn
+### Yarn 🐱
 
 ```
 yarn add discord.js-handler
 ```
 
-## Usage
+## Usage 🚀
 
-### Activation example
+### Activation example ✔️
 
 ```js
 const { Client } = require('discord.js');
@@ -50,7 +50,7 @@ try {
 }
 ```
 
-### Event example
+### Event example 📡
 
 ```js
 const { EventListener } = require('discord.js-handler');
@@ -73,7 +73,7 @@ module.exports = class MessageEvent extends EventListener {
 };
 ```
 
-### Command example
+### Command example 📡
 
 ```js
 const { CommandListener } = require('discord.js-handler');
@@ -95,13 +95,15 @@ module.exports = class PingCommand extends CommandListener {
 };
 ```
 
-### Warning ⚠️
+### Warnings ⚠️
 
 When using commands with the handler, you must specify the commands' folder in the handler settings (`commandsFolder` parameter) **and** have a message event, in which you call the `importCommands` method from the handler instance (`Handler.importCommands()`), otherwise the commands will not be called (As specified in the event example)
 
 This happens because the handler needs a prefix, and it must be defined on the message event, because you could want the prefix to be dynamic (change from guild to guild)
 
-> Login and token management done by the handler is completely optional. If you prefer doing so, create the client instance and login by yourself using discord.js
+---
+
+Login and token management done by the handler is completely optional. If you prefer doing so, create the client instance and login by yourself using discord.js
 
 ## Feedback
 
