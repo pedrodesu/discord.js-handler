@@ -16,18 +16,18 @@
     "commands",
     "node"
   ],
-  "version": "1.1.18",
+  "version": "1.2.0",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "start": "node -r tsconfig-paths/register -r ts-node/register lib",
-    "start:dev": "tsnd -r tsconfig-paths/register src",
+    "start:publish": "run-s start:update start:build publish-package",
     "start:update": "run-s get-updates apply-updates",
     "start:build": "run-s clean compile",
     "clean": "rimraf lib",
     "compile": "tsc",
     "get-updates": "ncu -u",
-    "apply-updates": "npm i"
+    "apply-updates": "npm i",
+    "publish-package": "npm publish"
   },
   "author": "el3triK_",
   "license": "MIT",
@@ -51,6 +51,6 @@
   },
   "dependencies": {
     "chalk": "^3.0.0",
-    "discord.js": "^11.6.1"
+    "discord.js": "^12.0.1"
   }
 }

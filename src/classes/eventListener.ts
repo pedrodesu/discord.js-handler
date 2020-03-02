@@ -3,17 +3,17 @@ import {
   ChannelDeleteEvent,
   ChannelPinsUpdateEvent,
   ChannelUpdateEvent,
-  ClientUserGuildSettingsUpdateEvent,
-  ClientUserSettingsUpdateEvent,
   DebugEvent,
   DisconnectEvent,
   EmojiCreateEvent,
   EmojiDeleteEvent,
   EmojiUpdateEvent,
+  ErrorEvent,
   GuildBanAddEvent,
   GuildBanRemoveEvent,
   GuildCreateEvent,
   GuildDeleteEvent,
+  GuildIntegrationsUpdateEvent,
   GuildMemberAddEvent,
   GuildMemberAvailableEvent,
   GuildMemberRemoveEvent,
@@ -22,31 +22,35 @@ import {
   GuildMemberUpdateEvent,
   GuildUnavailableEvent,
   GuildUpdateEvent,
-  GuildIntegrationsUpdateEvent,
+  InvalidatedEvent,
+  InviteCreateEvent,
+  InviteDeleteEvent,
+  MessageEvent,
   MessageDeleteEvent,
   MessageDeleteBulkEvent,
   MessageReactionAddEvent,
   MessageReactionRemoveEvent,
   MessageReactionRemoveAllEvent,
+  MessageReactionRemoveEmojiEvent,
   MessageUpdateEvent,
   PresenceUpdateEvent,
   RateLimitEvent,
   ReadyEvent,
-  ReconnectingEvent,
-  ResumeEvent,
   RoleCreateEvent,
   RoleDeleteEvent,
   RoleUpdateEvent,
+  ShardDisconnectEvent,
+  ShardErrorEvent,
+  ShardReadyEvent,
+  ShardReconnectingEvent,
+  ShardResumeEvent,
   TypingStartEvent,
   TypingStopEvent,
-  UserNoteUpdateEvent,
   UserUpdateEvent,
   VoiceStateUpdateEvent,
   WarnEvent,
   WebhookUpdateEvent,
-  GenericEvent,
-  MessageEvent,
-  ErrorEvent
+  GenericEvent
 } from '../interfaces/events';
 
 // Define EventListener class
@@ -60,8 +64,6 @@ export default class EventListener {
   protected constructor({ event, listener }: ChannelDeleteEvent);
   protected constructor({ event, listener }: ChannelPinsUpdateEvent);
   protected constructor({ event, listener }: ChannelUpdateEvent);
-  protected constructor({ event, listener }: ClientUserGuildSettingsUpdateEvent);
-  protected constructor({ event, listener }: ClientUserSettingsUpdateEvent);
   protected constructor({ event, listener }: DebugEvent);
   protected constructor({ event, listener }: DisconnectEvent);
   protected constructor({ event, listener }: EmojiCreateEvent);
@@ -80,6 +82,9 @@ export default class EventListener {
   protected constructor({ event, listener }: GuildMemberUpdateEvent);
   protected constructor({ event, listener }: GuildUnavailableEvent);
   protected constructor({ event, listener }: GuildUpdateEvent);
+  protected constructor({ event, listener }: InvalidatedEvent);
+  protected constructor({ event, listener }: InviteCreateEvent);
+  protected constructor({ event, listener }: InviteDeleteEvent);
   protected constructor({ event, listener }: GuildIntegrationsUpdateEvent);
   protected constructor({ event, listener }: MessageEvent);
   protected constructor({ event, listener }: MessageDeleteEvent);
@@ -87,18 +92,21 @@ export default class EventListener {
   protected constructor({ event, listener }: MessageReactionAddEvent);
   protected constructor({ event, listener }: MessageReactionRemoveEvent);
   protected constructor({ event, listener }: MessageReactionRemoveAllEvent);
+  protected constructor({ event, listener }: MessageReactionRemoveEmojiEvent);
   protected constructor({ event, listener }: MessageUpdateEvent);
   protected constructor({ event, listener }: PresenceUpdateEvent);
   protected constructor({ event, listener }: RateLimitEvent);
   protected constructor({ event, listener }: ReadyEvent);
-  protected constructor({ event, listener }: ReconnectingEvent);
-  protected constructor({ event, listener }: ResumeEvent);
   protected constructor({ event, listener }: RoleCreateEvent);
   protected constructor({ event, listener }: RoleDeleteEvent);
   protected constructor({ event, listener }: RoleUpdateEvent);
+  protected constructor({ event, listener }: ShardDisconnectEvent);
+  protected constructor({ event, listener }: ShardErrorEvent);
+  protected constructor({ event, listener }: ShardReadyEvent);
+  protected constructor({ event, listener }: ShardReconnectingEvent);
+  protected constructor({ event, listener }: ShardResumeEvent);
   protected constructor({ event, listener }: TypingStartEvent);
   protected constructor({ event, listener }: TypingStopEvent);
-  protected constructor({ event, listener }: UserNoteUpdateEvent);
   protected constructor({ event, listener }: UserUpdateEvent);
   protected constructor({ event, listener }: VoiceStateUpdateEvent);
   protected constructor({ event, listener }: WarnEvent);

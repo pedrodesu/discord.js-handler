@@ -1,8 +1,8 @@
 import { promises } from 'fs';
 import { join } from 'path';
 import { Message, Collection } from 'discord.js';
+import { red, green } from 'chalk';
 
-import { errorLog, successLog } from '../utils/logs';
 import EventListener from './eventListener';
 import CommandListener from './commandListener';
 import { HandlerOptions } from '../interfaces/main';
@@ -40,7 +40,7 @@ export default class Handler {
     try {
       await this.client.login(this.token);
     } catch (e) {
-      throw errorLog('Invalid token or Discord API down');
+      throw red('Invalid token or Discord API down');
     }
   };
 
@@ -52,7 +52,7 @@ export default class Handler {
   private readonly scanFolder = async (path: string, type: 'events' | 'commands'): Promise<void> => {
     try {
       // Checks if given path is a file
-      if (!(await lstat(path)).isDirectory()) throw errorLog(`The path ${path} is a file. It must be a directory`);
+      if (!(await lstat(path)).isDirectory()) throw red(`The path ${path} is a file. It must be a directory`);
 
       // Reads the files inside the directory and loops around each one
       const files = await readdir(path);
@@ -82,14 +82,14 @@ export default class Handler {
           const callback: GenericEvent['listener'] = listener.bind(importedListener, { client: this.client, handler: this });
 
           this.client.on(event, callback);
-          if (this.verbose) console.log(successLog(`[HANDLER] Event '${event}' loaded`));
+          if (this.verbose) console.log(green(`[HANDLER] Event '${event}' loaded`));
         } else if (type === 'commands') {
           const { aliases } = importedListener as CommandListener;
 
           // If we are searching for commands, treat the export as a command, get its properties and push them to the command collection
           this.commands.set(typeof aliases === 'string' ? aliases : aliases.map(a => a.toLowerCase()), listener);
           if (this.verbose)
-            console.log(successLog(`[HANDLER] Command which aliases are [${typeof aliases === 'string' ? aliases : aliases.join(', ')}] loaded`));
+            console.log(green(`[HANDLER] Command which aliases are [${typeof aliases === 'string' ? aliases : aliases.join(', ')}] loaded`));
         }
       }
     } catch (e) {

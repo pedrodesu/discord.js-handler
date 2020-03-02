@@ -1,8 +1,6 @@
 import {
   Channel,
-  ClientUserGuildSettings,
   Emoji,
-  ClientUserSettings,
   Guild,
   User,
   GuildMember,
@@ -10,11 +8,12 @@ import {
   Collection,
   Snowflake,
   MessageReaction,
-  RateLimitInfo,
   Role,
-  UserResolvable,
   TextChannel,
-  Client
+  Client,
+  Invite,
+  RateLimitData,
+  CloseEvent
 } from 'discord.js';
 
 import Handler from '../classes/handler';
@@ -42,16 +41,6 @@ export interface ChannelPinsUpdateEvent {
 export interface ChannelUpdateEvent {
   event: 'channelUpdate';
   listener: (utils: EventUtils, oldChannel: Channel, newChannel: Channel) => Promise<void> | void;
-}
-
-export interface ClientUserGuildSettingsUpdateEvent {
-  event: 'clientUserGuildSettingsUpdate';
-  listener: (utils: EventUtils, clientUserGuildSettings: ClientUserGuildSettings) => Promise<void> | void;
-}
-
-export interface ClientUserSettingsUpdateEvent {
-  event: 'clientUserSettingsUpdate';
-  listener: (utils: EventUtils, clientUserSettings: ClientUserSettings) => Promise<void> | void;
 }
 
 export interface DebugEvent {
@@ -149,6 +138,21 @@ export interface GuildIntegrationsUpdateEvent {
   listener: (utils: EventUtils, guild: Guild) => Promise<void> | void;
 }
 
+export interface InvalidatedEvent {
+  event: 'invalidated';
+  listener: (utils: EventUtils) => Promise<void> | void;
+}
+
+export interface InviteCreateEvent {
+  event: 'inviteCreate';
+  listener: (utils: EventUtils, invite: Invite) => Promise<void> | void;
+}
+
+export interface InviteDeleteEvent {
+  event: 'inviteDelete';
+  listener: (utils: EventUtils, invite: Invite) => Promise<void> | void;
+}
+
 export interface MessageEvent {
   event: 'message';
   listener: (utils: EventUtils, message: Message) => Promise<void> | void;
@@ -179,6 +183,11 @@ export interface MessageReactionRemoveAllEvent {
   listener: (utils: EventUtils, message: Message) => Promise<void> | void;
 }
 
+export interface MessageReactionRemoveEmojiEvent {
+  event: 'messageReactionRemoveEmoji';
+  listener: (utils: EventUtils, reaction: MessageReaction) => Promise<void> | void;
+}
+
 export interface MessageUpdateEvent {
   event: 'messageUpdate';
   listener: (utils: EventUtils, oldMessage: Message, newMessage: Message) => Promise<void> | void;
@@ -191,22 +200,12 @@ export interface PresenceUpdateEvent {
 
 export interface RateLimitEvent {
   event: 'rateLimit';
-  listener: (utils: EventUtils, rateLimit: RateLimitInfo) => Promise<void> | void;
+  listener: (utils: EventUtils, rateLimitData: RateLimitData) => Promise<void> | void;
 }
 
 export interface ReadyEvent {
   event: 'ready';
   listener: (utils: EventUtils) => Promise<void> | void;
-}
-
-export interface ReconnectingEvent {
-  event: 'reconnecting';
-  listener: (utils: EventUtils) => Promise<void> | void;
-}
-
-export interface ResumeEvent {
-  event: 'resume';
-  listener: (utils: EventUtils, replayed: number) => Promise<void> | void;
 }
 
 export interface RoleCreateEvent {
@@ -224,6 +223,31 @@ export interface RoleUpdateEvent {
   listener: (utils: EventUtils, oldRole: Role, newRole: Role) => Promise<void> | void;
 }
 
+export interface ShardDisconnectEvent {
+  event: 'shardDisconnect';
+  listener: (utils: EventUtils, event: CloseEvent, id: number) => Promise<void> | void;
+}
+
+export interface ShardErrorEvent {
+  event: 'shardError';
+  listener: (utils: EventUtils, error: Error, shardID: number) => Promise<void> | void;
+}
+
+export interface ShardReadyEvent {
+  event: 'shardReady';
+  listener: (utils: EventUtils, id: number, unavailableGuilds?: Set<string>) => Promise<void> | void;
+}
+
+export interface ShardReconnectingEvent {
+  event: 'shardReconnecting';
+  listener: (utils: EventUtils, id: number) => Promise<void> | void;
+}
+
+export interface ShardResumeEvent {
+  event: 'shardResume';
+  listener: (utils: EventUtils, id: number, replayedEvents: number) => Promise<void> | void;
+}
+
 export interface TypingStartEvent {
   event: 'typingStart';
   listener: (utils: EventUtils, channel: Channel, user: User) => Promise<void> | void;
@@ -232,11 +256,6 @@ export interface TypingStartEvent {
 export interface TypingStopEvent {
   event: 'typingStop';
   listener: (utils: EventUtils, channel: Channel, user: User) => Promise<void> | void;
-}
-
-export interface UserNoteUpdateEvent {
-  event: 'userNoteUpdate';
-  listener: (utils: EventUtils, user: UserResolvable, oldNote: string, newNote: string) => Promise<void> | void;
 }
 
 export interface UserUpdateEvent {
