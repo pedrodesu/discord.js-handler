@@ -106,19 +106,18 @@ export default class Handler {
       const basePath = module.parent.parent.filename;
 
       const options: GenericUtils = { client: this.client, handler: this };
-      const { onLoadedEvents, onLoadedCommands } = loadedCallbacks;
 
       const joinFolder = (...folder: string[]): string => join(basePath, '..', ...folder);
 
       // Make desired actions run
       if (this.eventsFolder) {
         await this.scanFolder(joinFolder(this.eventsFolder), 'events');
-        if (onLoadedEvents) await onLoadedEvents(options);
+        if (loadedCallbacks && loadedCallbacks.onLoadedEvents) await loadedCallbacks.onLoadedEvents(options);
       }
 
       if (this.commandsFolder) {
         await this.scanFolder(joinFolder(this.commandsFolder), 'commands');
-        if (onLoadedCommands) await onLoadedCommands(options);
+        if (loadedCallbacks && loadedCallbacks.onLoadedCommands) await loadedCallbacks.onLoadedCommands(options);
       }
     } catch (e) {
       console.error(e);
