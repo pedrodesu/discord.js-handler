@@ -7,12 +7,24 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/npm/dw/discord.js-handler?color=dc143c&style=flat-square" alt="downloads">
-  <img src="https://img.shields.io/npm/v/discord.js-handler?style=flat-square&color=9400d3" alt="npm version">
-  <img src="https://img.shields.io/bundlephobia/min/discord.js-handler?style=flat-square&color=ff6347" alt="minified size">
-  <img src="https://img.shields.io/librariesio/release/npm/discord.js-handler?style=flat-square" alt="dependencies update rate">
-  <img src="https://img.shields.io/codacy/grade/cc7816940cc0458c82aae1054431d011?style=flat-square" alt="code quality">
-  <img src="https://img.shields.io/npm/l/discord.js-handler?style=flat-square&color=4169e1" alt="license">
+  <a href="https://www.npmjs.com/package/discord.js-handler">
+    <img src="https://img.shields.io/npm/dw/discord.js-handler?color=dc143c&style=flat-square" alt="downloads">
+  </a>
+  <a href="https://www.npmjs.com/package/discord.js-handler">
+    <img src="https://img.shields.io/npm/v/discord.js-handler?style=flat-square&color=9400d3" alt="npm version">
+  </a>
+  <a href="https://www.npmjs.com/package/discord.js-handler">
+    <img src="https://img.shields.io/bundlephobia/min/discord.js-handler?style=flat-square&color=ff6347" alt="minified size">
+  </a>
+  <a href="https://david-dm.org/hSel3triK/discord.js-handler">
+    <img src="https://img.shields.io/david/hSel3triK/discord.js-handler?style=flat-square" alt="dependencies update rate">
+  </a>
+  <a href="https://app.codacy.com/manual/hSel3triK/discord.js-handler/dashboard">
+    <img src="https://img.shields.io/codacy/grade/cc7816940cc0458c82aae1054431d011?style=flat-square" alt="code quality">
+  </a>
+  <a href="https://github.com/hSel3triK/discord.js-handler/blob/master/LICENSE">
+    <img src="https://img.shields.io/npm/l/discord.js-handler?style=flat-square&color=4169e1" alt="license">
+  </a>
 </p>
 
 ---

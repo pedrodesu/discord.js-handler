@@ -100,12 +100,13 @@ export default class Handler {
   /*
    * Runs the events and commands (if both are called) folders scan
    */
-  readonly run = async ({ onLoadedEvents, onLoadedCommands }: RunCallbacks): Promise<void> => {
+  readonly run = async (loadedCallbacks?: RunCallbacks): Promise<void> => {
     try {
       // Get full path from the directory from which the function was called, which would equal the main file of the project
       const basePath = module.parent.parent.filename;
 
       const options: GenericUtils = { client: this.client, handler: this };
+      const { onLoadedEvents, onLoadedCommands } = loadedCallbacks;
 
       const joinFolder = (...folder: string[]): string => join(basePath, '..', ...folder);
 
