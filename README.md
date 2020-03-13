@@ -103,19 +103,18 @@ const { CommandListener } = require('discord.js-handler');
 
 module.exports = class PingCommand extends CommandListener {
   constructor() {
-    const msg = `Pong! :ping_pong: ${Math.round(client.ws.ping)}ms`;
-    const paramObj = {
+    const parameters = {
       aliases: ['ping', 'pong'],
       listener: async ({ client, message }) => {
         try {
-          await message.reply(msg);
+          await message.reply(`Pong! :ping_pong: ${Math.round(client.ws.ping)}ms`);
           await message.delete();
         } catch (e) {
           console.error(e);
         }
       }
     };
-    super(paramObj);
+    super(parameters);
   }
 };
 ```
