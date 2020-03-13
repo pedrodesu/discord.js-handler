@@ -61,16 +61,19 @@ export default class Handler {
         const newFullPath = join(path, file);
 
         // If the child is a file, proceed with action. Else, run this same function again, which allows recursive and categorized commands and events
-        if ((await lstat(newFullPath)).isDirectory()) return await this.scanFolder(newFullPath, type);
+        if ((await lstat(newFullPath)).isDirectory()) {
+          await this.scanFolder(newFullPath, type);
+          continue;
+        }
 
         // Ignore the file if it is not a JavaScript or TypeScript file
-        if (!file.endsWith('.js') && !file.endsWith('.ts')) return;
+        if (!file.endsWith('.js') && !file.endsWith('.ts')) continue;
 
         const fileContent = await import(newFullPath);
         const ListenerClass = fileContent.default || fileContent;
 
         // Ignore the file if we cannot find a valid class (CommandListener or EventListener)
-        if (!ListenerClass) return;
+        if (!ListenerClass) continue;
 
         const importedListener: EventListener | CommandListener = new ListenerClass();
         const { listener } = importedListener;

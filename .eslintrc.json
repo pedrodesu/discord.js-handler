@@ -41,6 +41,7 @@
     "no-await-in-loop": "off",
     "import/no-unresolved": "off",
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-    "consistent-return": "off"
+    "consistent-return": "off",
+    "no-continue": "off"
   }
 }

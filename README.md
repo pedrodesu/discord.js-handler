@@ -134,9 +134,9 @@ Login and token management done by the handler is completely optional. If you pr
 
 If you want to report an error or give a suggestion, please refer to the following links
 
-[Report error](https://github.com/hSel3triK/discord.js-handler/issues/new?assignees=&labels=&template=bug_report.md&title=)
+[Report bug](https://github.com/hSel3triK/discord.js-handler/issues/new?labels=bug&title=Bug)
 
-[Give suggestion](https://github.com/hSel3triK/discord.js-handler/issues/new?assignees=&labels=&template=feature_request.md&title=)
+[Give suggestion](https://github.com/hSel3triK/discord.js-handler/issues/new?labels=enhancement&title=Suggestion)
 
 ## License 📝
 
