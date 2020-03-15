@@ -11,7 +11,8 @@ interface CommandArguments {
   handler: Handler;
 }
 
-export interface Command {
-  aliases: string | string[];
+export interface GenericCommand {
+  aliases: string[];
   listener: (emittedArguments: CommandArguments) => Promise<void> | void;
+  description?: string;
 }

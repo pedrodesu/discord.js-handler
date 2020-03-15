@@ -1,13 +1,12 @@
-import { Command } from '../interfaces/commands';
+import { GenericCommand } from '../interfaces/commands';
 
-// Define CommandListener class
 export default class CommandListener {
-  // Define its properties
-  readonly aliases: Command['aliases'];
-  readonly listener: Command['listener'];
+  readonly aliases: GenericCommand['aliases'];
+  readonly listener: GenericCommand['listener'];
 
-  constructor({ aliases, listener }: Command) {
-    this.aliases = aliases;
-    this.listener = listener;
+  readonly description?: GenericCommand['description'];
+
+  constructor(commandParameters: Pick<GenericCommand, 'aliases' | 'listener' | 'description'>) {
+    Object.assign(this, commandParameters);
   }
 }
