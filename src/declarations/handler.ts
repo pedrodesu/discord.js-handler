@@ -9,9 +9,8 @@ export class HandlerBase extends BasePropsObject {
    * Absolute path of the folder where the handler constructor was called
    * @protected
    * @readonly
-   * @type {string}
    */
-  protected readonly moduleFolder: string = join(module.parent.parent.parent.filename, '..');
+  protected readonly moduleFolder = join(module.parent.parent.parent.filename, '..');
 
   /**
    * Client variable to do every operation
