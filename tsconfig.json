@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "target": "esnext",
+    "outDir": "lib",
+    "declaration": true,
+    "removeComments": true
+  }
+}
