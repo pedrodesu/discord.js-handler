@@ -27,7 +27,7 @@
   "author": "el3triK_",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^13.13.1",
+    "@types/node": "^14.0.4",
     "@typescript-eslint/eslint-plugin": "^2.29.0",
     "@typescript-eslint/parser": "^2.29.0",
     "concurrently": "^5.1.0",
